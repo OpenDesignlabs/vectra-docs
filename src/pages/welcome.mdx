@@ -1,0 +1,22 @@
+import { Breadcrumb, CardGrid, DocCard, PageNav } from '../components/MDXComponents';
+
+<Breadcrumb section="General" page="Welcome" />
+<div className="page-eyebrow">Getting Started</div>
+
+<h1 className="page-title">Welcome to Vectra</h1>
+<p className="page-subtitle">The visual website builder powered by a Rust WASM engine, WebContainer VFS, and a full Model Context Protocol integration. Build, preview, and export production-ready React apps — without leaving the browser.</p>
+
+<CardGrid>
+  <DocCard to="/intro" icon="◈" title="Introduction" desc="Architecture overview, use cases, and what makes Vectra different from other builders." />
+  <DocCard to="/quickstart" icon="⚡" title="Quickstart" desc="Launch Vectra, create your first page, and export code in under 5 minutes." />
+  <DocCard to="/canvas" icon="⬜" title="Canvas Guide" desc="Drag, resize, nest, and style nodes directly on the visual canvas." />
+  <DocCard to="/mcp" icon="⬡" title="MCP Tools Reference" desc="All 9 MCP tool schemas, mutation protocol, and SSE stream spec." />
+</CardGrid>
+
+## What is Vectra?
+Vectra is a SaaS visual website builder with a React/TypeScript frontend, a Rust WebAssembly engine for performance-critical operations, and Google WebContainers for a real in-browser Node.js VFS. It lets you design pages visually, preview them live, and export clean Next.js/Vite code.
+
+## Need help?
+Search the docs using `⌘K`. Browse sections using the left sidebar. Each page includes an on-page table of contents on the right.
+
+<PageNav next={{ to: '/intro', title: 'Introduction' }} />

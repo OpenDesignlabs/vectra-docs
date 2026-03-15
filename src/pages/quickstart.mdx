@@ -1,0 +1,43 @@
+import { Breadcrumb, Callout, CodeBlock, PageNav } from '../components/MDXComponents';
+
+<Breadcrumb section="General" page="Quickstart" />
+<div className="page-eyebrow">Getting Started</div>
+
+<h1 className="page-title">Quickstart</h1>
+<p className="page-subtitle">Get Vectra running locally in under 5 minutes.</p>
+
+## Prerequisites
+
+<Callout type="warn">
+  Requires Node.js 18+, pnpm, and Rust + `wasm-pack` for the engine build.
+</Callout>
+
+## 1. Clone and install
+
+<CodeBlock lang="bash">
+git clone https://github.com/your-org/vectra
+cd vectra
+pnpm install
+</CodeBlock>
+
+## 2. Build the Rust WASM engine
+
+<CodeBlock lang="bash">
+cd vectra-engine
+wasm-pack build --target web
+cd ..
+</CodeBlock>
+
+## 3. Start the dev server
+
+<CodeBlock lang="bash">
+pnpm dev
+</CodeBlock>
+
+Vectra opens at `http://localhost:5173`. The WebContainer boots inside the browser — no backend server required.
+
+<Callout type="tip">
+  Vectra uses `shamefully-hoist=true` in `.npmrc` and `@vitejs/plugin-react-swc` for fast container boot times. Do not change these.
+</Callout>
+
+<PageNav prev={{ to: '/intro', title: 'Introduction' }} next={{ to: '/canvas', title: 'Canvas Overview' }} />

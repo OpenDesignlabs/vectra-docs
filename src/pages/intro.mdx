@@ -1,0 +1,31 @@
+import { Breadcrumb, Callout, PageNav } from '../components/MDXComponents';
+
+<Breadcrumb section="General" page="Introduction" />
+<div className="page-eyebrow">Overview</div>
+
+<h1 className="page-title">Introduction to Vectra</h1>
+<p className="page-subtitle">A deep dive into how Vectra works, its hybrid engine architecture, and why it's built differently.</p>
+
+## What is Vectra?
+Vectra is a visual website builder engineered for production-grade output. Unlike drag-and-drop tools that output unmaintainable markup, Vectra treats every interaction as an *Intent Event* that syncs directly to a WebContainer VFS — producing clean, idiomatic React code.
+
+## Hybrid Engine Architecture
+Vectra uses a two-layer engine design:
+
+<Callout type="info">
+  **TypeScript layer** — handles UI state, event dispatch, the VFS bridge, and the React canvas. Fast, reactive, and directly manipulates the node tree.<br/><br/>
+  **Rust WASM layer** — offloads heavy operations: compressed undo/redo history, SWC code compilation, responsive grid conversion, and layout snapping. Never blocks the UI thread.
+</Callout>
+
+## Core Concepts
+
+### VectraNode
+Every element on the canvas is a `VectraNode` — a serializable object with an `id`, `type`, `children`, `props`, `style`, and optional `content`. All nodes live in a flat `Record<string, VectraNode>` — never a nested tree.
+
+### VectraPage
+A page is a lightweight descriptor: `id`, `name`, `slug`, `rootId`, and optional `seo` metadata. The `rootId` points to the page's root container in the flat element map.
+
+### Intent Events
+Every canvas interaction (drag, resize, prop edit, text change) emits a typed Intent Event to `ProjectContext`. The context applies the mutation, pushes compressed history to the Rust layer, and schedules a VFS sync.
+
+<PageNav prev={{ to: '/', title: 'Welcome' }} next={{ to: '/quickstart', title: 'Quickstart' }} />

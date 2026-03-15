@@ -1,0 +1,41 @@
+import { Breadcrumb, Callout, CodeBlock, PageNav } from '../components/MDXComponents';
+
+<Breadcrumb section="Architecture" page="Permanent Guardrails" />
+<div className="page-eyebrow">Permanent Constraints</div>
+
+<h1 className="page-title">Architecture Constraints & Bug Guardrails</h1>
+<p className="page-subtitle">These are locked constraints — established from production bugs. They must never be reversed in any future PR.</p>
+
+## PC-SAFE-1 — VFS Page Name Safety
+
+<Callout type="warn">
+  Always guard VFS-hydrated page objects against non-string `name` properties before calling any string method.
+</Callout>
+
+**Root cause:** A `name.startsWith is not a function` TypeError in `ProjectContext.tsx` crashes the entire `ProjectProvider` when a `VectraPage` object has a non-string `name`, from corrupt VFS hydration.
+
+<CodeBlock lang="typescript">
+{`// ✓ CORRECT — always guard
+typeof p.name === 'string' && p.name.startsWith('__figma_comp__')
+
+// ✗ WRONG — will crash on non-string name
+p.name.startsWith('__figma_comp__')`}
+</CodeBlock>
+
+## MCP-CORS-1 — VFS Server CORS Headers
+
+<Callout type="warn">
+  All VFS-written server source strings must include CORS headers and an OPTIONS preflight handler.
+</Callout>
+
+**Root cause:** The inline MCP server was missing `Access-Control-Allow-Origin: *`, blocking all Tool Runner POST requests and SSE connections from the browser thread.
+
+## FIG-SHUTDOWN-1 — Figma Proxy Shutdown
+
+<Callout type="warn">
+  Proxy reset must terminate the live WebContainer process before clearing singleton state. Use a shutdown endpoint — never rely on TypeScript-side cleanup alone.
+</Callout>
+
+**Root cause:** `resetProxy()` cleared the TypeScript singleton but left the Node.js process running on port 3001. Re-spawning failed with `EADDRINUSE`.
+
+<PageNav prev={{ to: '/figma', title: 'Figma Proxy' }} next={{ to: '/', title: 'Welcome' }} />

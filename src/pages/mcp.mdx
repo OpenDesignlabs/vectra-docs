@@ -1,0 +1,35 @@
+import { Breadcrumb, Callout, CodeBlock, PageNav, ArchPill } from '../components/MDXComponents';
+
+<Breadcrumb section="MCP Protocol" page="Overview" />
+<div className="page-eyebrow">Model Context Protocol</div>
+
+<h1 className="page-title">MCP Server</h1>
+<p className="page-subtitle">Vectra runs an MCP-compliant HTTP server inside the WebContainer on port 3002, exposing 9 tools for reading and mutating the canvas from any AI agent.</p>
+
+## Architecture
+The MCP server is written as a pure Node.js ESM script (`mcp-server.mjs`) and written to the WebContainer VFS at boot. It exposes:
+
+<CodeBlock lang="endpoints">
+{`GET  /mcp/health       — health check + tool count
+GET  /mcp/sse          — Server-Sent Events stream (mutations)
+POST /mcp/message      — JSON-RPC 2.0 tool calls
+GET  /mcp/info         — server metadata`}
+</CodeBlock>
+
+<Callout type="info">
+  **MCP-WC-1 (permanent)**: Never connect to `localhost:3002` directly. The WebContainer API fires a `server-ready` event with a container-forwarded URL (e.g. `https://xxx--3002.local.webcontainer.io/`). Only that URL is reachable from the browser.
+</Callout>
+
+## Permanent Constraints
+
+<div style={{ display: 'flex', flexWrap: 'wrap' }}>
+  <ArchPill>MCP-PORT-1</ArchPill>
+  <ArchPill>MCP-READ-1</ArchPill>
+  <ArchPill>MCP-WRITE-1</ArchPill>
+  <ArchPill>MCP-SEC-1</ArchPill>
+  <ArchPill>MCP-IDLE-1</ArchPill>
+  <ArchPill>MCP-WC-1</ArchPill>
+  <ArchPill>MCP-CORS-1</ArchPill>
+</div>
+
+<PageNav prev={{ to: '/ports', title: 'Port Architecture' }} next={{ to: '/mcp-tools', title: 'Tool Reference' }} />

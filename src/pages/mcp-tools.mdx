@@ -1,0 +1,39 @@
+import { Breadcrumb, PageNav, Badge, CodeBlock } from '../components/MDXComponents';
+
+<Breadcrumb section="MCP Protocol" page="Tool Reference" />
+<div className="page-eyebrow">Reference</div>
+
+<h1 className="page-title">MCP Tool Reference</h1>
+<p className="page-subtitle">Complete schema reference for all 9 Vectra MCP tools.</p>
+
+<table className="tool-table">
+  <thead>
+    <tr><th>Tool</th><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>vectra_get_project</code></td><td><Badge type="read">Read</Badge></td><td>Returns project metadata: pages list, node count, framework, theme.</td></tr>
+    <tr><td><code>vectra_get_page</code></td><td><Badge type="read">Read</Badge></td><td>Returns all nodes on a page as a flat <code>nodeId → node</code> map.</td></tr>
+    <tr><td><code>vectra_get_element</code></td><td><Badge type="read">Read</Badge></td><td>Returns a single node by ID with full props, style, and children.</td></tr>
+    <tr><td><code>vectra_find_elements</code></td><td><Badge type="read">Read</Badge></td><td>Search elements by type or name substring across the project.</td></tr>
+    <tr><td><code>vectra_add_element</code></td><td><Badge type="write">Write</Badge></td><td>Add a new node to a page. Returns a <code>__vectra_mutation__</code> event.</td></tr>
+    <tr><td><code>vectra_update_element</code></td><td><Badge type="write">Write</Badge></td><td>Patch props, style, content, or className of an existing node.</td></tr>
+    <tr><td><code>vectra_delete_element</code></td><td><Badge type="write">Write</Badge></td><td>Delete a node and all its children recursively.</td></tr>
+    <tr><td><code>vectra_add_page</code></td><td><Badge type="write">Write</Badge></td><td>Create a new canvas page with an auto-generated slug.</td></tr>
+    <tr><td><code>vectra_run_ai</code></td><td><Badge type="ai">AI</Badge></td><td>Run the Vectra AI agent with a prompt. Generates and applies a layout.</td></tr>
+  </tbody>
+</table>
+
+## Write mutation flow
+All Write tools return a `__vectra_mutation__` payload over the SSE stream. `MCPPanel` listens to the SSE and dispatches a `vectra:mcp-command` CustomEvent — which `ProjectContext` catches and applies to React state. VFS is never written by the MCP server directly.
+
+<CodeBlock lang="json">
+{`{
+  "__vectra_mutation__": true,
+  "op": "ADD_ELEMENT",
+  "newId": "tex-mcp1a2b3c",
+  "parentId": "page-home",
+  "element": { /* VectraNode */ }
+}`}
+</CodeBlock>
+
+<PageNav prev={{ to: '/mcp', title: 'MCP Overview' }} next={{ to: '/mcp-mutations', title: 'Mutation Protocol' }} />
