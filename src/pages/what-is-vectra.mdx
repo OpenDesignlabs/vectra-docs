@@ -1,0 +1,51 @@
+import { Callout, CardGrid, DocCard, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">General</div>
+
+# What is Vectra?
+
+Vectra is a visual website builder that runs entirely in your browser. You drag and drop elements onto a canvas, style them visually, and when you're ready — export a complete, production-ready React codebase that you own and can deploy anywhere.
+
+## Who is it for?
+
+**Designers** who want to build real, working websites without depending on a developer for every change.
+
+**Developers** who want to skip boilerplate and scaffold pages visually, then export clean code to customize further.
+
+**Teams** who want designers and developers working from the same source of truth — no more "this doesn't look like the Figma."
+
+**Founders and indie makers** who need to ship a website fast without hiring an agency.
+
+## What can you build with Vectra?
+
+- Marketing websites and landing pages
+- Multi-page portfolios
+- SaaS product pages
+- Blog and content sites
+- Internal tools and dashboards (with data binding)
+
+## How is Vectra different?
+
+Most visual builders lock you in. The website lives on their servers, in their format, and you can't take it with you.
+
+Vectra is different. When you export, you get a real **Next.js** or **Vite + React** project — standard code, standard structure, no proprietary runtime. You can open it in VS Code, push it to GitHub, and deploy it on Vercel or Netlify in minutes.
+
+<Callout type="tip">
+  Think of Vectra as a fast way to go from idea to working React codebase — without writing the initial boilerplate by hand.
+</Callout>
+
+## Core ideas to know
+
+### The Canvas
+Every page in Vectra is a visual canvas. You add elements (text, images, buttons, containers, sections) by dragging them from the insert panel on the left. Everything you see on the canvas is exactly what your page will look like.
+
+### Elements
+Every item on your page — a heading, a button, a container, an image — is an *element*. Elements can be nested inside each other, styled individually, and moved around freely.
+
+### Pages
+A Vectra project can have multiple pages. Each page gets its own URL slug (like `/about` or `/contact`). When you export, each page becomes its own route in the generated code.
+
+### Export
+When you're done designing, hit Export. Vectra generates a complete React project you can download as a ZIP, or push directly to a deployment platform.
+
+<PageNav prev={{ to: '/', title: 'Welcome' }} next={{ to: '/quickstart', title: 'Quickstart' }} />

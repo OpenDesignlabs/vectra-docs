@@ -1,0 +1,80 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Exporting & Deploying</div>
+
+# Export & Deploy
+
+When your project is ready, Vectra exports it as a complete, real React codebase. You own the code — it's not locked inside Vectra.
+
+## Choosing a framework
+
+When you create a project, you choose between two output formats:
+
+**Next.js** — the most popular React framework. Best if you want server-side rendering, SEO optimization, or plan to add a backend. Each page becomes a file in the `app/` directory.
+
+**Vite + React** — a lightweight, fast option. Best for simpler sites, SPAs, or if you're familiar with plain React. All pages are managed through a `BrowserRouter` in `App.tsx`.
+
+You choose the framework once at project creation. It cannot be changed after the fact.
+
+## How to export
+
+Click the **Export** button in the top bar of the canvas editor. Vectra generates your project and downloads it as a `.zip` file. Unzip it anywhere on your computer.
+
+## What's inside the export
+
+```
+my-project/
+├── app/                  (Next.js) or src/  (Vite)
+│   ├── page.tsx          Home page
+│   ├── about/page.tsx    About page
+│   └── layout.tsx        Root layout with Navbar
+├── components/
+│   └── Navbar.tsx        Auto-generated navigation
+├── public/               Static assets
+├── package.json
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+Every file is standard, readable TypeScript and JSX. No hidden runtime, no proprietary format.
+
+## Running the export locally
+
+Open a terminal, navigate to the unzipped folder, and run:
+
+```bash
+npm install
+npm run dev
+```
+
+Your site opens at `http://localhost:3000` (Next.js) or `http://localhost:5173` (Vite).
+
+## Deploying to Vercel
+
+Vercel is the easiest way to deploy a Vectra export. It's free for personal projects.
+
+**1.** Push your exported project to a GitHub repository.
+
+**2.** Go to [vercel.com](https://vercel.com) and click **Add New Project**.
+
+**3.** Import your GitHub repository.
+
+**4.** Vercel auto-detects the framework. Click **Deploy**.
+
+Your site is live in about 60 seconds. Vercel gives you a free `.vercel.app` URL and handles HTTPS automatically.
+
+## Deploying to Netlify
+
+**1.** Push your project to GitHub.
+
+**2.** Go to [netlify.com](https://netlify.com) and click **Add new site → Import an existing project**.
+
+**3.** Connect your GitHub repo. Set the build command to `npm run build` and the publish directory to `.next` (Next.js) or `dist` (Vite).
+
+**4.** Click **Deploy site**.
+
+<Callout type="tip">
+  For Next.js projects, Vercel is the recommended deployment platform — it's made by the same team and has the deepest integration.
+</Callout>
+
+<PageNav prev={{ to: '/components-sections', title: 'Components & Sections' }} next={{ to: '/shortcuts', title: 'Keyboard Shortcuts' }} />

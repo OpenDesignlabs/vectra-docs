@@ -1,0 +1,50 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Building with Vectra</div>
+
+# Pages & Navigation
+
+Every Vectra project can have multiple pages. Each page has its own canvas, its own URL, and its own content.
+
+## Adding a page
+
+Open the **Pages panel** by clicking the pages icon in the left toolbar. Click **+ New Page**. Give it a name — Vectra automatically creates a URL slug from the name.
+
+| Page name | Auto-generated slug |
+|---|---|
+| Home | `/` |
+| About Us | `/about-us` |
+| Contact | `/contact` |
+| Blog | `/blog` |
+
+You can rename the slug at any time by clicking on it in the Pages panel.
+
+## Switching between pages
+
+Click any page in the Pages panel to switch the canvas to that page. Each page is completely independent — elements on one page don't affect another.
+
+## Deleting a page
+
+Right-click a page in the Pages panel and choose **Delete**. You can't delete the last remaining page in a project.
+
+## Reordering pages
+
+Drag pages up and down in the Pages panel to reorder them. The order affects the navigation component if you have one.
+
+## Navigation between pages
+
+When your project has two or more pages, Vectra automatically generates a `Navbar` component when you export. It links to all your pages using the slugs you defined.
+
+<Callout type="tip">
+  If you want a custom navigation, add a **Container** element to your page, place text or button elements inside it, and give each one a link property pointing to your page slugs.
+</Callout>
+
+## SEO settings per page
+
+Click the settings icon next to any page name in the Pages panel to open its SEO settings. You can set:
+
+- **Page title** — what appears in the browser tab and Google results
+- **Description** — the snippet shown in search results
+- **OG image** — the preview image when shared on social media
+
+<PageNav prev={{ to: '/canvas', title: 'The Canvas' }} next={{ to: '/styling', title: 'Styling Elements' }} />

@@ -1,29 +1,18 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-
-// ── CHANGE LOG ────────────────────────────────────────────────────────────────
-// FIXED:  NavLink to="/" now has `end` prop — was matching active on all routes
-// ADDED:  Live TOC via IntersectionObserver — scrapes h2/h3 from rendered content
-// PRESERVED: All sectionMap entries, all NavLink structure, sidebar layout
-// ─────────────────────────────────────────────────────────────────────────────
+import { useEffect, useState } from 'react';
 
 const sectionMap: Record<string, string> = {
-  '/': 'General resources',
-  '/intro': 'General resources',
-  '/quickstart': 'General resources',
-  '/canvas': 'Canvas & Editor',
-  '/nodes': 'Canvas & Editor',
-  '/pages': 'Canvas & Editor',
-  '/layers': 'Canvas & Editor',
-  '/mcp': 'MCP Protocol',
-  '/mcp-tools': 'MCP Protocol',
-  '/mcp-mutations': 'MCP Protocol',
-  '/vfs': 'VFS & WebContainer',
-  '/ports': 'VFS & WebContainer',
-  '/rust': 'Rust Engine',
-  '/history': 'Rust Engine',
-  '/figma': 'Figma Import',
-  '/constraints': 'Architecture Constraints',
+  '/': 'General',
+  '/what-is-vectra': 'General',
+  '/quickstart': 'General',
+  '/canvas': 'Building with Vectra',
+  '/pages-nav': 'Building with Vectra',
+  '/styling': 'Building with Vectra',
+  '/ai-generation': 'Features',
+  '/figma-import': 'Features',
+  '/components-sections': 'Features',
+  '/export-deploy': 'Exporting & Deploying',
+  '/shortcuts': 'Reference',
 };
 
 interface TocEntry {
@@ -32,65 +21,47 @@ interface TocEntry {
   level: 2 | 3;
 }
 
-// Scrapes rendered h2/h3 from the .docs-content div and builds the TOC list.
-// Runs after each route change via pathname dep. Assigns IDs if missing.
 function useToc(pathname: string) {
   const [entries, setEntries] = useState<TocEntry[]>([]);
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    // Small delay — wait for MDX content to mount into the DOM
     const t = setTimeout(() => {
       const container = document.querySelector('.docs-content');
       if (!container) return;
-
       const headings = Array.from(
         container.querySelectorAll<HTMLHeadingElement>('h2, h3')
       );
-
       const built: TocEntry[] = headings.map((el, i) => {
         if (!el.id) {
-          // Auto-assign stable id from text content
-          el.id = el.textContent
-            ?.toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)/g, '') ?? `heading-${i}`;
+          el.id =
+            el.textContent
+              ?.toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '') ?? `heading-${i}`;
         }
-        return {
-          id: el.id,
-          text: el.textContent ?? '',
-          level: el.tagName === 'H2' ? 2 : 3,
-        };
+        return { id: el.id, text: el.textContent ?? '', level: el.tagName === 'H2' ? 2 : 3 };
       });
-
       setEntries(built);
       setActiveId(built[0]?.id ?? '');
     }, 80);
-
     return () => clearTimeout(t);
   }, [pathname]);
 
-  // IntersectionObserver — highlights the TOC entry whose heading is in view
   useEffect(() => {
     if (entries.length === 0) return;
-
     const observer = new IntersectionObserver(
-      (observations) => {
-        for (const obs of observations) {
-          if (obs.isIntersecting) {
-            setActiveId(obs.target.id);
-            break;
-          }
+      (obs) => {
+        for (const o of obs) {
+          if (o.isIntersecting) { setActiveId(o.target.id); break; }
         }
       },
       { rootMargin: '0px 0px -60% 0px', threshold: 0 }
     );
-
     entries.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, [entries]);
 
@@ -101,7 +72,6 @@ const Layout = () => {
   const { pathname } = useLocation();
   const currentSection = sectionMap[pathname] ?? 'Docs';
   const { entries: tocEntries, activeId } = useToc(pathname);
-  const contentRef = useRef<HTMLElement>(null);
 
   const scrollToId = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -117,18 +87,17 @@ const Layout = () => {
           </div>
           <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '8px' }}>
             <div className="sidebar-badge">● DOCS</div>
-            <span className="sidebar-version">v1.0 alpha</span>
+            <span className="sidebar-version">v1.0</span>
           </div>
         </div>
 
         <div className="sidebar-section">
           <div className="sidebar-section-label">General</div>
-          {/* FIX: `end` prevents "/" from matching as active on all routes */}
           <NavLink end to="/" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Welcome to Vectra<div className="sidebar-badge-new">NEW</div>
+            <div className="dot" />Welcome
           </NavLink>
-          <NavLink to="/intro" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Introduction
+          <NavLink to="/what-is-vectra" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />What is Vectra?
           </NavLink>
           <NavLink to="/quickstart" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
             <div className="dot" />Quickstart
@@ -136,65 +105,42 @@ const Layout = () => {
         </div>
 
         <div className="sidebar-section">
-          <div className="sidebar-section-label">Canvas & Editor</div>
+          <div className="sidebar-section-label">Building with Vectra</div>
           <NavLink to="/canvas" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Canvas Overview
+            <div className="dot" />The Canvas
           </NavLink>
-          <NavLink to="/nodes" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Node System
+          <NavLink to="/pages-nav" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Pages & Navigation
           </NavLink>
-          <NavLink to="/pages" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Multi-Page Architecture
-          </NavLink>
-          <NavLink to="/layers" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Layers Panel
+          <NavLink to="/styling" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Styling Elements
           </NavLink>
         </div>
 
         <div className="sidebar-section">
-          <div className="sidebar-section-label">MCP Protocol</div>
-          <NavLink to="/mcp" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />MCP Server Overview<div className="sidebar-badge-new">NEW</div>
+          <div className="sidebar-section-label">Features</div>
+          <NavLink to="/ai-generation" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />AI Generation
           </NavLink>
-          <NavLink to="/mcp-tools" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Tool Reference
+          <NavLink to="/figma-import" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Figma Import
           </NavLink>
-          <NavLink to="/mcp-mutations" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Mutation Protocol
-          </NavLink>
-        </div>
-
-        <div className="sidebar-section">
-          <div className="sidebar-section-label">VFS & WebContainer</div>
-          <NavLink to="/vfs" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />VFS Lifecycle
-          </NavLink>
-          <NavLink to="/ports" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Port Architecture
+          <NavLink to="/components-sections" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Components & Sections
           </NavLink>
         </div>
 
         <div className="sidebar-section">
-          <div className="sidebar-section-label">Rust Engine</div>
-          <NavLink to="/rust" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />WASM Engine Overview
-          </NavLink>
-          <NavLink to="/history" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />History Manager
+          <div className="sidebar-section-label">Exporting & Deploying</div>
+          <NavLink to="/export-deploy" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Export & Deploy
           </NavLink>
         </div>
 
         <div className="sidebar-section">
-          <div className="sidebar-section-label">Figma Import</div>
-          <NavLink to="/figma" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Figma Proxy
-          </NavLink>
-        </div>
-
-        <div className="sidebar-section">
-          <div className="sidebar-section-label">Architecture Constraints</div>
-          <NavLink to="/constraints" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
-            <div className="dot" />Permanent Guardrails
+          <div className="sidebar-section-label">Reference</div>
+          <NavLink to="/shortcuts" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Keyboard Shortcuts
           </NavLink>
         </div>
 
@@ -221,11 +167,10 @@ const Layout = () => {
         </div>
 
         <div className="docs-content-wrap">
-          <main className="docs-content" ref={contentRef}>
+          <main className="docs-content">
             <Outlet />
           </main>
 
-          {/* FIXED: Live TOC — populated from IntersectionObserver scrape */}
           <nav className="docs-toc">
             {tocEntries.length > 0 && (
               <>

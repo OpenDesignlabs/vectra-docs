@@ -1,0 +1,58 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Building with Vectra</div>
+
+# The Canvas
+
+The canvas is where you build your page. It's the large area in the centre of the screen. What you see on the canvas is what your website will look like in the browser.
+
+## Selecting elements
+
+Click any element on the canvas to select it. A blue border appears around it, and the right panel shows its properties.
+
+To select a parent element when a child is selected, press `Escape` or click outside the child element.
+
+To select multiple elements, hold `Shift` and click each one.
+
+## Moving elements
+
+Click and drag any selected element to move it. As you drag, alignment guides appear — thin lines that show when your element lines up with others on the page. Release to drop.
+
+<Callout type="tip">
+  Hold `Shift` while dragging to constrain movement to a straight horizontal or vertical line.
+</Callout>
+
+## Resizing elements
+
+When an element is selected, small handles appear at its corners and edges. Drag any handle to resize. The right panel updates in real-time to show the new dimensions.
+
+## The Layers panel
+
+The layers panel (left toolbar, stack icon) shows every element on the current page as a tree. If you have elements nested inside containers, the tree reflects that nesting.
+
+Click any layer to select that element on the canvas. Drag layers up and down to reorder them. Elements higher in the list appear on top visually.
+
+## Nesting elements
+
+Containers can hold other elements inside them. Drag an element on top of a container and it snaps inside. The layers panel shows the nesting as a tree structure.
+
+This is how you build layouts — a row container holding three card containers, each with a heading and a paragraph inside.
+
+## Undo and redo
+
+Press `Ctrl + Z` (or `Cmd + Z` on Mac) to undo any change. Press `Ctrl + Shift + Z` to redo.
+
+Vectra keeps a full history of your edits. You can undo all the way back to when you first created the project.
+
+## Zoom and pan
+
+- `Ctrl + scroll` — zoom in and out
+- `Space + drag` — pan around the canvas
+- `Ctrl + 0` — fit the whole page in view
+- `Ctrl + 1` — zoom to 100%
+
+<Callout type="info">
+  The canvas preview shows your page at desktop width by default. Use the device switcher in the top bar to preview at tablet or mobile size.
+</Callout>
+
+<PageNav prev={{ to: '/quickstart', title: 'Quickstart' }} next={{ to: '/pages-nav', title: 'Pages & Navigation' }} />

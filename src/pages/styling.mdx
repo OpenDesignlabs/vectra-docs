@@ -1,0 +1,59 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Building with Vectra</div>
+
+# Styling Elements
+
+When you select an element on the canvas, the right panel shows all its styling options. Every change you make is applied live — you see it immediately on the canvas.
+
+## Layout
+
+The Layout section controls how an element is sized and positioned.
+
+- **Width and Height** — set in pixels or percentage. Use `%` for elements that should grow with the screen.
+- **Padding** — space *inside* the element, between its border and its content.
+- **Margin** — space *outside* the element, pushing other elements away.
+
+<Callout type="tip">
+  To make an element fill its parent container's full width, set Width to `100%`.
+</Callout>
+
+## Colors
+
+Click the color swatch next to any color property to open the color picker. You can set:
+
+- **Background color** — the fill behind the element's content
+- **Text color** — the color of any text inside
+- **Border color** — the color of the element's border
+
+## Typography
+
+For text and heading elements, the Typography section controls:
+
+- **Font size** — in pixels
+- **Font weight** — Thin, Regular, Medium, Bold, Extra Bold
+- **Line height** — spacing between lines of text
+- **Letter spacing** — spacing between individual characters
+- **Text alignment** — left, center, right, or justify
+
+## Borders
+
+- **Border width** — thickness in pixels (0 means no border)
+- **Border style** — solid, dashed, or dotted
+- **Border radius** — rounded corners. Set to `9999px` for fully circular or pill shapes.
+
+## Opacity and visibility
+
+The **Opacity** slider controls how transparent an element is. 100% is fully visible, 0% is invisible.
+
+## The Theme panel
+
+Instead of setting colors element by element, use the **Theme panel** (paint bucket icon in the left toolbar) to define your project's global colors and fonts. Set a primary, secondary, and accent color — then apply those tokens to elements instead of raw hex values.
+
+This makes it easy to change your whole site's color scheme in one place.
+
+<Callout type="info">
+  Changes in the Theme panel apply to all elements that use theme tokens. Elements with manually overridden colors are not affected.
+</Callout>
+
+<PageNav prev={{ to: '/pages-nav', title: 'Pages & Navigation' }} next={{ to: '/ai-generation', title: 'AI Generation' }} />

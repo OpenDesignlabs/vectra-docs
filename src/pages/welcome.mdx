@@ -1,22 +1,26 @@
-import { Breadcrumb, CardGrid, DocCard, PageNav } from '../components/MDXComponents';
+import { CardGrid, DocCard, PageNav } from '../components/MDXComponents';
 
-<Breadcrumb section="General" page="Welcome" />
-<div className="page-eyebrow">Getting Started</div>
+<div className="page-eyebrow">Welcome</div>
 
-<h1 className="page-title">Welcome to Vectra</h1>
-<p className="page-subtitle">The visual website builder powered by a Rust WASM engine, WebContainer VFS, and a full Model Context Protocol integration. Build, preview, and export production-ready React apps — without leaving the browser.</p>
+# Welcome to Vectra Docs
+
+Vectra is a visual website builder that lets you design, build, and export real websites — without writing code. If you do write code, Vectra exports clean React projects you can take anywhere.
+
+These docs will help you understand what Vectra can do and how to use it effectively, whether you're a designer, developer, or somewhere in between.
 
 <CardGrid>
-  <DocCard to="/intro" icon="◈" title="Introduction" desc="Architecture overview, use cases, and what makes Vectra different from other builders." />
-  <DocCard to="/quickstart" icon="⚡" title="Quickstart" desc="Launch Vectra, create your first page, and export code in under 5 minutes." />
-  <DocCard to="/canvas" icon="⬜" title="Canvas Guide" desc="Drag, resize, nest, and style nodes directly on the visual canvas." />
-  <DocCard to="/mcp" icon="⬡" title="MCP Tools Reference" desc="All 9 MCP tool schemas, mutation protocol, and SSE stream spec." />
+  <DocCard to="/what-is-vectra" icon="◈" title="What is Vectra?" desc="Understand what Vectra is, who it's for, and how it compares to other tools." />
+  <DocCard to="/quickstart" icon="⚡" title="Quickstart" desc="Build your first page in under 5 minutes. Three ways to get started." />
+  <DocCard to="/canvas" icon="⬜" title="The Canvas" desc="Learn how to drag, drop, resize, and arrange elements on your page." />
+  <DocCard to="/ai-generation" icon="✦" title="AI Generation" desc="Describe what you want and let Vectra's AI build it for you instantly." />
 </CardGrid>
 
-## What is Vectra?
-Vectra is a SaaS visual website builder with a React/TypeScript frontend, a Rust WebAssembly engine for performance-critical operations, and Google WebContainers for a real in-browser Node.js VFS. It lets you design pages visually, preview them live, and export clean Next.js/Vite code.
+## New to Vectra?
 
-## Need help?
-Search the docs using `⌘K`. Browse sections using the left sidebar. Each page includes an on-page table of contents on the right.
+Start with [What is Vectra?](/what-is-vectra) to get the full picture, then move to the [Quickstart](/quickstart) to build something real.
 
-<PageNav next={{ to: '/intro', title: 'Introduction' }} />
+## Already know the basics?
+
+Jump straight to [AI Generation](/ai-generation), [Figma Import](/figma-import), or [Export & Deploy](/export-deploy).
+
+<PageNav next={{ to: '/what-is-vectra', title: 'What is Vectra?' }} />

@@ -1,0 +1,53 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Features</div>
+
+# Figma Import
+
+If you have an existing Figma design, you can import it directly into Vectra and turn it into an editable canvas. This is useful when a designer has already created mockups and you want to build the real thing from them.
+
+## Before you import
+
+Make sure your Figma file is set to **"Anyone with the link can view"**. To check this, open your Figma file and click the **Share** button in the top right. Set the link permission to "can view".
+
+## How to import
+
+**1. Open the Figma Import panel.**
+Click the Figma icon in the left toolbar.
+
+**2. Paste your Figma file URL.**
+It looks something like `https://www.figma.com/file/ABC123/My-Design`.
+
+**3. Select a frame.**
+Vectra fetches your file and shows you the top-level frames (these are usually your pages or screens). Click one to import it.
+
+**4. The frame becomes a canvas.**
+Vectra converts the Figma frame into Vectra elements — containers, text nodes, and images — all fully editable.
+
+## What imports well
+
+- Simple layouts with rectangles, text, and images
+- Flat designs without complex component nesting
+- Designs using standard fonts available on the web
+
+## What may need adjustment
+
+- Auto-layout frames — Vectra converts these to containers but the exact spacing behaviour may differ
+- Figma components with multiple variants — only the current variant is imported
+- Custom or local fonts — if the font isn't available as a web font, it falls back to the system font
+- Complex vector illustrations — these are imported as flattened images, not editable paths
+
+<Callout type="warn">
+  Figma import gives you an editable starting point — it is not a pixel-perfect converter. Plan to spend some time adjusting the result after import, especially for complex designs.
+</Callout>
+
+## After importing
+
+Once imported, your design is just like any other Vectra project. You can:
+
+- Click any element and change its properties
+- Delete elements and replace them with Vectra components
+- Add new pages and sections
+- Export to code when you're ready
+
+<PageNav prev={{ to: '/ai-generation', title: 'AI Generation' }} next={{ to: '/components-sections', title: 'Components & Sections' }} />

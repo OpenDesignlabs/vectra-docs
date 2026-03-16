@@ -1,43 +1,83 @@
-import { Breadcrumb, Callout, CodeBlock, PageNav } from '../components/MDXComponents';
+import { Callout, PageNav } from '../components/MDXComponents';
 
-<Breadcrumb section="General" page="Quickstart" />
-<div className="page-eyebrow">Getting Started</div>
+<div className="page-eyebrow">General</div>
 
-<h1 className="page-title">Quickstart</h1>
-<p className="page-subtitle">Get Vectra running locally in under 5 minutes.</p>
+# Quickstart
 
-## Prerequisites
+There are three ways to start a new project in Vectra. Pick the one that fits how you work.
 
-<Callout type="warn">
-  Requires Node.js 18+, pnpm, and Rust + `wasm-pack` for the engine build.
-</Callout>
+## Path 1 — Start from scratch
 
-## 1. Clone and install
+This is the fastest way to get a feel for Vectra.
 
-<CodeBlock lang="bash">
-git clone https://github.com/your-org/vectra
-cd vectra
-pnpm install
-</CodeBlock>
+**1. Open Vectra and create a new project.**
+From the dashboard, click **New Project**. Choose a framework (Next.js or Vite) and give it a name.
 
-## 2. Build the Rust WASM engine
+**2. You'll land on the canvas.**
+Your project starts with a single blank page called "Home" at the `/` route.
 
-<CodeBlock lang="bash">
-cd vectra-engine
-wasm-pack build --target web
-cd ..
-</CodeBlock>
+**3. Add your first element.**
+Click the **+** button in the left panel (or press `A`) to open the Insert drawer. Click any element — try dragging a **Section** onto the canvas to start with a full-width block.
 
-## 3. Start the dev server
+**4. Edit it.**
+Click the element to select it. The right panel shows all its properties — size, color, padding, font. Change something.
 
-<CodeBlock lang="bash">
-pnpm dev
-</CodeBlock>
+**5. Add more pages.**
+Click the **Pages** icon in the left panel. Hit **+ New Page**, give it a name like "About", and it gets a `/about` slug automatically.
 
-Vectra opens at `http://localhost:5173`. The WebContainer boots inside the browser — no backend server required.
+**6. Export when ready.**
+Click the **Export** button in the top bar. Download your project as a ZIP. Done.
 
 <Callout type="tip">
-  Vectra uses `shamefully-hoist=true` in `.npmrc` and `@vitejs/plugin-react-swc` for fast container boot times. Do not change these.
+  You don't need to install anything. Vectra runs entirely in the browser — open it and start building.
 </Callout>
 
-<PageNav prev={{ to: '/intro', title: 'Introduction' }} next={{ to: '/canvas', title: 'Canvas Overview' }} />
+---
+
+## Path 2 — Generate with AI
+
+If you have an idea but don't want to drag and drop from zero, describe it to Vectra's AI and it will build a starting layout for you.
+
+**1. Create a new project** (same as above).
+
+**2. Open the AI panel.**
+Look for the sparkle icon `✦` in the left toolbar, or press `Ctrl + K`.
+
+**3. Describe what you want.**
+Type something like:
+
+> "A landing page for a mobile app with a hero section, three feature cards, and a pricing table."
+
+**4. Vectra generates the layout.**
+The AI places sections and elements on your canvas. It's not a finished design — it's a fast starting point you then edit visually.
+
+**5. Edit and refine.**
+Click any generated element and change it. Add your real copy, swap images, adjust colors from the Theme panel.
+
+<Callout type="info">
+  AI generation works best with clear, specific prompts. Mention the type of page, the sections you want, and any style preference (minimal, bold, dark, etc.).
+</Callout>
+
+---
+
+## Path 3 — Import from Figma
+
+If you have an existing Figma design, you can bring it into Vectra as an editable canvas.
+
+**1. Open the Figma Import panel.**
+Click the Figma icon in the left toolbar.
+
+**2. Paste your Figma file URL.**
+Make sure the file is set to "Anyone with the link can view" in Figma's share settings.
+
+**3. Select which frame or page to import.**
+Vectra fetches your design and converts it into editable canvas elements — real containers, text nodes, and images.
+
+**4. Keep editing in Vectra.**
+The imported design is now fully editable. Rearrange elements, change styles, add new sections on top of the import.
+
+<Callout type="warn">
+  Figma import converts static designs into web layouts. Complex Figma components with variants or auto-layout may need some manual adjustment after import.
+</Callout>
+
+<PageNav prev={{ to: '/what-is-vectra', title: 'What is Vectra?' }} next={{ to: '/canvas', title: 'The Canvas' }} />

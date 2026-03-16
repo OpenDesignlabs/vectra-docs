@@ -1,0 +1,56 @@
+import { Callout, PageNav } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Features</div>
+
+# Components & Sections
+
+Vectra comes with a library of pre-built elements and full-page sections you can drop directly onto the canvas.
+
+## The Insert drawer
+
+Press `A` or click the `+` icon in the left toolbar to open the Insert drawer. Elements are grouped into categories:
+
+### Basic
+The building blocks of every page.
+
+- **Text** — a paragraph of body copy
+- **Heading** — a large title (H1 through H6)
+- **Button** — a clickable button with customizable label and link
+- **Image** — an image with a configurable source URL
+- **Divider** — a horizontal rule to separate content
+
+### Layout
+Elements for structuring your page.
+
+- **Container** — a box that holds other elements. The most versatile element in Vectra — use it for rows, columns, cards, and wrappers.
+- **Grid** — a container with CSS grid layout built in
+
+### Forms
+- **Input** — a text input field
+- **Textarea** — a multi-line text input
+- **Checkbox** — a checkbox with a label
+
+### Sections
+Full pre-built page sections you can drop in and customize. These include:
+
+- **Hero** — a full-width header area with headline, subtitle, and CTA
+- **Features grid** — three or four feature cards in a row
+- **Pricing** — a pricing table with plan cards
+- **Testimonials** — a row of customer quote cards
+- **Footer** — a site footer with links and copyright
+
+<Callout type="tip">
+  Sections are the fastest way to build a full page. Drop a Hero, Features, and Footer section, then customize the copy and colors — you have a complete landing page in under a minute.
+</Callout>
+
+## Custom code elements
+
+If you need something Vectra doesn't provide out of the box, use the **Custom Code** element. It lets you write a React component directly inside Vectra. The component is rendered live on the canvas and included in the export.
+
+To use it: insert a Custom Code element, then click the **Code** tab in the right panel. Write your JSX. Vectra compiles it in real-time and shows the result on the canvas.
+
+<Callout type="info">
+  Custom Code elements support Tailwind CSS classes and standard React hooks. They do not have access to external npm packages unless those packages are already included in the project's `package.json`.
+</Callout>
+
+<PageNav prev={{ to: '/figma-import', title: 'Figma Import' }} next={{ to: '/export-deploy', title: 'Export & Deploy' }} />
