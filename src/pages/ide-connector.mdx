@@ -1,0 +1,53 @@
+import { Callout, PageNav, DocCard, CardGrid } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Advanced Workflow</div>
+
+# IDE Connector (MCP)
+
+Vectra's IDE Connector allows you to link the Studio directly to your favorite developer tools like **Cursor**, **VS Code**, or **Claude Desktop**. This enables your local AI agent to "see" the live canvas and perform edits through natural language commands in your own IDE.
+
+## Getting Started
+
+1. **Open the MCP Panel:** Click the CPU icon `⚙️` in the left sidebar of the Studio.
+2. **Select your IDE:** Choose between Cursor, VS Code, Windsurf, or Claude Desktop.
+3. **Copy the Configuration:** Vectra provides a custom JSON configuration block specifically for your project.
+4. **Paste and Restart:** Paste the config into your IDE's settings (as instructed in the panel) and restart your IDE.
+
+---
+
+## What can your IDE agent do?
+
+Once connected via the **Model Context Protocol (MCP)**, your AI agent gains superpowers over the Vectra Studio:
+
+<CardGrid>
+  <DocCard title="Real-time Inspection" desc="The agent can read every element on your active page to understand your layout." />
+  <DocCard title="Natural Language Edits" desc="Ask the agent to 'Fix the padding on all buttons' or 'Make the hero background dark' directly from your IDE." />
+  <DocCard title="Batch Mutations" desc="Command the agent to add 10 new feature cards with alternating colors in one go." />
+  <DocCard title="Theme Control" desc="Update your design tokens (primary color, fonts) purely via terminal or chat." />
+</CardGrid>
+
+---
+
+## The Local Bridge
+
+We recommend using the **Local Bridge** method for the best experience. It doesn't require a public URL and works completely offline.
+
+- **Zero configuration:** Once the bridge is installed via the provided `npx` command, it works instantly.
+- **Fast:** Mutations happen with sub-millisecond latency as the bridge talks directly to the browser's WebContainer.
+- **Secure:** Your project data never leaves your machine.
+
+---
+
+## Commands and Tools
+
+Your IDE agent has access to several specialized tools:
+- `vectra_get_project`: List all pages and theme tokens.
+- `vectra_add_element`: Insert headers, text, or containers.
+- `vectra_update_element`: Modify any property or Tailwind class on a specific node.
+- `vectra_run_ai`: Trigger the Studio's internal AI generation from your IDE.
+
+<Callout type="tip">
+  Try asking your Cursor agent: *"Add a large 'Join Now' button inside the hero section on the home page."* The button will appear instantly in the Studio browser window!
+</Callout>
+
+<PageNav prev={{ to: '/ai-generation', title: 'Advanced AI' }} next={{ to: '/marketplace', title: 'The Marketplace' }} />

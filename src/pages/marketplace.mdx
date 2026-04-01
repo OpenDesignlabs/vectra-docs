@@ -1,0 +1,63 @@
+import { Callout, PageNav, DocCard, CardGrid } from '../components/MDXComponents';
+
+<div className="page-eyebrow">Library</div>
+
+# The Marketplace
+
+The Marketplace is Vectra's integrated library of high-quality, production-ready components. Instead of building every section from scratch, you can browse a growing catalog of headers, heroes, footers, and complex features.
+
+## Why use Marketplace components?
+
+Every component in the Marketplace is built using the same primitives you use in the Studio:
+- **Pure React:** No bloated wrappers or proprietary logic.
+- **Tailwind CSS:** Fully styled with Tailwind utility classes.
+- **Modifiable:** Once inserted, the component is fully "unlocked" and editable on your canvas.
+
+---
+
+## Exploring Categories
+
+We've organized the marketplace into intuitive UI sections so you can find exactly what your project needs:
+
+<CardGrid>
+  <DocCard title="Hero Sections" desc="Landing page banners with headlines and main CTAs." />
+  <DocCard title="Navigation" desc="Responsive navbars, mega-menus, and sidebars." />
+  <DocCard title="Pricing" desc="SaaS pricing tables, comparison grids, and toggle plans." />
+  <DocCard title="Footers" desc="Multi-column footers, newsletter signs, and legals." />
+</CardGrid>
+
+---
+
+## The Workflow
+
+### 1. Browse and Preview
+Use the sidebar in the Marketplace to filter by category. When you find a component you like, click the **Live Preview** toggle to see it in a responsive iframe.
+
+<Callout type="info">
+  **Real Breakpoint Testing:** The Marketplace preview lets you freely resize the component to verify it looks great on mobile, tablet, and desktop before you commit to it.
+</Callout>
+
+### 2. Check Official Status
+Look for the **Official** badge `✦`. These components are maintained by the Vectra team and are guaranteed to follow our latest design system standards.
+
+### 3. One-Click Insert
+Click **Insert** to download the component binary and its source code into your project. It will appear at the bottom of your currently active canvas section.
+
+### 4. Direct Editing
+Once a Marketplace section is on your canvas, select it to view its properties in the right panel.
+- **Props:** Change text, images, and links via the interactive schema.
+- **Styles:** Swap Tailwind classes directly on the element's nodes.
+- **Structure:** Add or remove sub-elements within the imported component.
+
+---
+
+## Publishing to the Marketplace
+
+Are you a developer who has built something amazing? You can share it!
+
+1. Select a component or section on your canvas.
+2. Click the **Publish** icon in the context menu.
+3. Add a label, description, and tags.
+4. Your component will be available for others (or just your team) to use.
+
+<PageNav prev={{ to: '/quickstart', title: 'Quickstart' }} next={{ to: '/canvas', title: 'The Canvas' }} />

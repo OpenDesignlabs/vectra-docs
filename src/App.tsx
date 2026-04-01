@@ -14,6 +14,12 @@ import FigmaImport from './pages/figma-import.mdx';
 import ComponentsSections from './pages/components-sections.mdx';
 import ExportDeploy from './pages/export-deploy.mdx';
 import Shortcuts from './pages/shortcuts.mdx';
+import Constraints from './pages/constraints.mdx';
+import IDEConnector from './pages/ide-connector.mdx';
+import Marketplace from './pages/marketplace.mdx';
+import MCP from './pages/mcp.mdx';
+import MCPTools from './pages/mcp-tools.mdx';
+import Intro from './pages/intro.mdx';
 
 function App() {
   return (
@@ -32,6 +38,12 @@ function App() {
             <Route path="components-sections" element={<ComponentsSections />} />
             <Route path="export-deploy" element={<ExportDeploy />} />
             <Route path="shortcuts" element={<Shortcuts />} />
+            <Route path="constraints" element={<Constraints />} />
+            <Route path="ide-connector" element={<IDEConnector />} />
+            <Route path="marketplace" element={<Marketplace />} />
+            <Route path="mcp" element={<MCP />} />
+            <Route path="mcp-tools" element={<MCPTools />} />
+            <Route path="intro" element={<Intro />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

@@ -2,54 +2,36 @@ import { Callout, PageNav } from '../components/MDXComponents';
 
 <div className="page-eyebrow">Features</div>
 
-# AI Generation
+# Advanced AI Generation (Stitch)
 
-Vectra has a built-in AI that can generate page layouts from a text description. Instead of starting from a blank canvas, describe what you want and the AI builds a working starting point in seconds.
+Vectra's AI engine, known as **Stitch**, goes far beyond simple layout generation. It creates production-ready React components, imports entire projects from ZIP files, and can even crawl a live URL to bring it onto your canvas.
 
-## How to use it
+## 1. Feature Generation (Prompt-to-Component)
 
-**1. Open the AI panel.**
-Click the sparkle icon `✦` in the left toolbar, or press `Ctrl + K`.
+Instead of just layout blocks, Stitch generates **real React functional components** styled with Tailwind CSS.
 
-**2. Type your prompt.**
-Describe the page or section you want. Be specific — the more detail you give, the closer the result will be to what you're imagining.
+- **How to use:** Open the AI panel (`✦` or `Ctrl + K`) and ensure the **AI** tab is selected.
+- **Why it's better:** The AI writes idiomatic code. If you ask for a "Modern SaaS Pricing Table", it doesn't just place containers—it builds a complete, interactive component that you can instantly edit.
+- **Direct Insert:** Once generated, click **Insert to Canvas** to place the component on your active page.
 
-**3. Hit Generate.**
-Vectra's AI builds the layout and places it on your canvas. This usually takes a few seconds.
+## 2. Project Import (Zip-to-Vectra)
 
-**4. Edit the result.**
-The generated layout is fully editable. Click any element to change its text, color, or position. Use it as a starting point, not a final design.
+Have an existing React or Next.js project you want to move into Vectra?
 
-## Writing good prompts
+- **How to use:** Go to the AI panel and select the **Zip** tab. Drop your `.zip` archive.
+- **Workflow:** Stitch parses your project's file structure, identifies components, and maps them to **VectraNodes**. 
+- **Result:** Your entire local project becomes an editable Vectra canvas automatically.
 
-The AI responds well to prompts that mention:
+## 3. URL Crawler (Site-to-Canvas)
 
-- **The type of page** — landing page, pricing page, about page, contact form
-- **The sections you want** — hero, features grid, testimonials, FAQ, footer
-- **The style** — minimal, bold, dark background, lots of whitespace, colorful
-- **Your product or service** — the more context, the better the copy
+Want to use an existing website as a starting point for a new project?
 
-**Examples of good prompts:**
+- **How to use:** In the AI panel, select the **URL** tab and paste a link (e.g., `https://your-competitor.com`).
+- **Crawler Logic:** Stitch fetches the HTML/CSS of the target site and intelligently reconstructs the layout using Vectra's native components.
+- **Editable State:** The imported site isn't just a static image—it's a fully editable node tree where you can swap colors, text, and layout on the fly.
 
-> "A dark landing page for a productivity app. Hero section with a headline and CTA button, then a three-column features section, then a pricing table with two plans."
-
-> "A simple about page for a design studio. Team photo placeholder at the top, a two-paragraph bio, and a contact button."
-
-> "A minimal portfolio homepage. Just a large name, job title, short bio, and links to Twitter and LinkedIn."
-
-<Callout type="tip">
-  If the first result isn't what you wanted, refine the prompt and generate again. You can also keep the parts you like and re-generate only a specific section.
+<Callout type="info">
+  **Note on Quality:** AI-generated components and imports are high-fidelity drafts. You should always refine the generated copy, swap placeholder images, and ensure the final theme matches your brand in the **Theme Panel**.
 </Callout>
 
-## What AI generation is not
-
-The AI generates *layout and structure* — containers, headings, buttons, sections in the right arrangement. It is not a design system. You'll want to:
-
-- Replace placeholder text with your real copy
-- Swap in your actual images
-- Adjust colors to match your brand using the Theme panel
-- Fine-tune spacing and typography to your preference
-
-Think of it as a very fast first draft, not a finished product.
-
-<PageNav prev={{ to: '/styling', title: 'Styling Elements' }} next={{ to: '/figma-import', title: 'Figma Import' }} />
+<PageNav prev={{ to: '/styling', title: 'Styling Elements' }} next={{ to: '/ide-connector', title: 'IDE Connector' }} />

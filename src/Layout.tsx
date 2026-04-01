@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 const sectionMap: Record<string, string> = {
   '/': 'General',
@@ -13,6 +14,12 @@ const sectionMap: Record<string, string> = {
   '/components-sections': 'Features',
   '/export-deploy': 'Exporting & Deploying',
   '/shortcuts': 'Reference',
+  '/constraints': 'Building with Vectra',
+  '/ide-connector': 'Integrations',
+  '/marketplace': 'Resources',
+  '/mcp': 'Integrations',
+  '/mcp-tools': 'Integrations',
+  '/intro': 'General',
 };
 
 interface TocEntry {
@@ -68,10 +75,26 @@ function useToc(pathname: string) {
   return { entries, activeId };
 }
 
+function useTheme() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    return (localStorage.getItem('vectra-theme') as 'light' | 'dark') || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('vectra-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+
+  return { theme, toggleTheme };
+}
+
 const Layout = () => {
   const { pathname } = useLocation();
   const currentSection = sectionMap[pathname] ?? 'Docs';
   const { entries: tocEntries, activeId } = useToc(pathname);
+  const { theme, toggleTheme } = useTheme();
 
   const scrollToId = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -85,8 +108,8 @@ const Layout = () => {
             <div className="topbar-logo-mark">V</div>
             <span>Vectra</span>
           </div>
-          <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '8px' }}>
-            <div className="sidebar-badge">● DOCS</div>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '12px' }}>
+            <div className="sidebar-badge">DOCS</div>
             <span className="sidebar-version">v1.0</span>
           </div>
         </div>
@@ -98,6 +121,9 @@ const Layout = () => {
           </NavLink>
           <NavLink to="/what-is-vectra" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
             <div className="dot" />What is Vectra?
+          </NavLink>
+          <NavLink to="/intro" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Introduction
           </NavLink>
           <NavLink to="/quickstart" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
             <div className="dot" />Quickstart
@@ -115,6 +141,9 @@ const Layout = () => {
           <NavLink to="/styling" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
             <div className="dot" />Styling Elements
           </NavLink>
+          <NavLink to="/constraints" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Constraints
+          </NavLink>
         </div>
 
         <div className="sidebar-section">
@@ -127,6 +156,26 @@ const Layout = () => {
           </NavLink>
           <NavLink to="/components-sections" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
             <div className="dot" />Components & Sections
+          </NavLink>
+        </div>
+
+        <div className="sidebar-section">
+          <div className="sidebar-section-label">Integrations</div>
+          <NavLink to="/ide-connector" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />IDE Connector
+          </NavLink>
+          <NavLink to="/mcp" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />MCP Overview
+          </NavLink>
+          <NavLink to="/mcp-tools" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />MCP Tools
+          </NavLink>
+        </div>
+
+        <div className="sidebar-section">
+          <div className="sidebar-section-label">Resources</div>
+          <NavLink to="/marketplace" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
+            <div className="dot" />Marketplace
           </NavLink>
         </div>
 
@@ -149,8 +198,8 @@ const Layout = () => {
 
       <div className="docs-main">
         <div className="docs-topbar">
-          <div className="topbar-logo" style={{ fontSize: '13px' }}>
-            <div className="topbar-logo-mark" style={{ width: '22px', height: '22px', fontSize: '10px' }}>V</div>
+          <div className="topbar-logo">
+            <div className="topbar-logo-mark" style={{ width: '24px', height: '24px', fontSize: '11px' }}>V</div>
             Docs
           </div>
           <div className="topbar-divider" />
@@ -160,6 +209,9 @@ const Layout = () => {
             <kbd>⌘K</kbd>
           </div>
           <div className="topbar-links">
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme" title="Toggle Theme">
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
             <div className="topbar-link">GitHub</div>
             <div className="topbar-link">Forum</div>
             <div className="topbar-link">Studio ↗</div>
